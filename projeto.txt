@@ -1,0 +1,7 @@
+Gestão de Tarefas para Freelancers
+
+Público alvo - Freelancers, pequenas empresas e agências que contratam freelancers
+
+JTBD - Controle de prazos e tarefas, visibilidade para clientes, histórico de atividades, gerenciamento do tempo
+
+Entidades - Tarefa, projeto, usuario

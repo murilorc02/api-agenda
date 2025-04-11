@@ -1,0 +1,28 @@
+generator client {
+  provider = "prisma-client-js"
+  output   = "../generated/prisma"
+}
+
+datasource db {
+  provider = "sqlite"
+  url      = env("DATABASE_URL")
+}
+
+model Usuario {
+  email String @id
+  senha String
+  nome  String
+}
+
+model Projeto {
+  id     Int      @id @default(autoincrement())
+  nome   String
+  Tarefa Tarefa[]
+}
+
+model Tarefa {
+  id          Int      @id @default(autoincrement())
+  nome        String
+  nomeProjeto Projeto? @relation(fields: [projetoId], references: [id])
+  projetoId   Int?
+}
