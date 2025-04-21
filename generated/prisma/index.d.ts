@@ -1087,23 +1087,36 @@ export namespace Prisma {
 
   export type AggregateUsuario = {
     _count: UsuarioCountAggregateOutputType | null
+    _avg: UsuarioAvgAggregateOutputType | null
+    _sum: UsuarioSumAggregateOutputType | null
     _min: UsuarioMinAggregateOutputType | null
     _max: UsuarioMaxAggregateOutputType | null
   }
 
+  export type UsuarioAvgAggregateOutputType = {
+    id: number | null
+  }
+
+  export type UsuarioSumAggregateOutputType = {
+    id: number | null
+  }
+
   export type UsuarioMinAggregateOutputType = {
+    id: number | null
     email: string | null
     senha: string | null
     nome: string | null
   }
 
   export type UsuarioMaxAggregateOutputType = {
+    id: number | null
     email: string | null
     senha: string | null
     nome: string | null
   }
 
   export type UsuarioCountAggregateOutputType = {
+    id: number
     email: number
     senha: number
     nome: number
@@ -1111,19 +1124,30 @@ export namespace Prisma {
   }
 
 
+  export type UsuarioAvgAggregateInputType = {
+    id?: true
+  }
+
+  export type UsuarioSumAggregateInputType = {
+    id?: true
+  }
+
   export type UsuarioMinAggregateInputType = {
+    id?: true
     email?: true
     senha?: true
     nome?: true
   }
 
   export type UsuarioMaxAggregateInputType = {
+    id?: true
     email?: true
     senha?: true
     nome?: true
   }
 
   export type UsuarioCountAggregateInputType = {
+    id?: true
     email?: true
     senha?: true
     nome?: true
@@ -1168,6 +1192,18 @@ export namespace Prisma {
     /**
      * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
      * 
+     * Select which fields to average
+    **/
+    _avg?: UsuarioAvgAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to sum
+    **/
+    _sum?: UsuarioSumAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
      * Select which fields to find the minimum value
     **/
     _min?: UsuarioMinAggregateInputType
@@ -1198,15 +1234,20 @@ export namespace Prisma {
     take?: number
     skip?: number
     _count?: UsuarioCountAggregateInputType | true
+    _avg?: UsuarioAvgAggregateInputType
+    _sum?: UsuarioSumAggregateInputType
     _min?: UsuarioMinAggregateInputType
     _max?: UsuarioMaxAggregateInputType
   }
 
   export type UsuarioGroupByOutputType = {
+    id: number
     email: string
     senha: string
     nome: string
     _count: UsuarioCountAggregateOutputType | null
+    _avg: UsuarioAvgAggregateOutputType | null
+    _sum: UsuarioSumAggregateOutputType | null
     _min: UsuarioMinAggregateOutputType | null
     _max: UsuarioMaxAggregateOutputType | null
   }
@@ -1226,35 +1267,40 @@ export namespace Prisma {
 
 
   export type UsuarioSelect<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
+    id?: boolean
     email?: boolean
     senha?: boolean
     nome?: boolean
   }, ExtArgs["result"]["usuario"]>
 
   export type UsuarioSelectCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
+    id?: boolean
     email?: boolean
     senha?: boolean
     nome?: boolean
   }, ExtArgs["result"]["usuario"]>
 
   export type UsuarioSelectUpdateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
+    id?: boolean
     email?: boolean
     senha?: boolean
     nome?: boolean
   }, ExtArgs["result"]["usuario"]>
 
   export type UsuarioSelectScalar = {
+    id?: boolean
     email?: boolean
     senha?: boolean
     nome?: boolean
   }
 
-  export type UsuarioOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"email" | "senha" | "nome", ExtArgs["result"]["usuario"]>
+  export type UsuarioOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "email" | "senha" | "nome", ExtArgs["result"]["usuario"]>
 
   export type $UsuarioPayload<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     name: "Usuario"
     objects: {}
     scalars: $Extensions.GetPayloadResult<{
+      id: number
       email: string
       senha: string
       nome: string
@@ -1341,8 +1387,8 @@ export namespace Prisma {
      * // Get first 10 Usuarios
      * const usuarios = await prisma.usuario.findMany({ take: 10 })
      * 
-     * // Only select the `email`
-     * const usuarioWithEmailOnly = await prisma.usuario.findMany({ select: { email: true } })
+     * // Only select the `id`
+     * const usuarioWithIdOnly = await prisma.usuario.findMany({ select: { id: true } })
      * 
      */
     findMany<T extends UsuarioFindManyArgs>(args?: SelectSubset<T, UsuarioFindManyArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$UsuarioPayload<ExtArgs>, T, "findMany", GlobalOmitOptions>>
@@ -1386,9 +1432,9 @@ export namespace Prisma {
      *   ]
      * })
      * 
-     * // Create many Usuarios and only return the `email`
-     * const usuarioWithEmailOnly = await prisma.usuario.createManyAndReturn({
-     *   select: { email: true },
+     * // Create many Usuarios and only return the `id`
+     * const usuarioWithIdOnly = await prisma.usuario.createManyAndReturn({
+     *   select: { id: true },
      *   data: [
      *     // ... provide data here
      *   ]
@@ -1477,9 +1523,9 @@ export namespace Prisma {
      *   ]
      * })
      * 
-     * // Update zero or more Usuarios and only return the `email`
-     * const usuarioWithEmailOnly = await prisma.usuario.updateManyAndReturn({
-     *   select: { email: true },
+     * // Update zero or more Usuarios and only return the `id`
+     * const usuarioWithIdOnly = await prisma.usuario.updateManyAndReturn({
+     *   select: { id: true },
      *   where: {
      *     // ... provide filter here
      *   },
@@ -1681,6 +1727,7 @@ export namespace Prisma {
    * Fields of the Usuario model
    */
   interface UsuarioFieldRefs {
+    readonly id: FieldRef<"Usuario", 'Int'>
     readonly email: FieldRef<"Usuario", 'String'>
     readonly senha: FieldRef<"Usuario", 'String'>
     readonly nome: FieldRef<"Usuario", 'String'>
@@ -4210,6 +4257,7 @@ export namespace Prisma {
 
 
   export const UsuarioScalarFieldEnum: {
+    id: 'id',
     email: 'email',
     senha: 'senha',
     nome: 'nome'
@@ -4257,16 +4305,16 @@ export namespace Prisma {
 
 
   /**
-   * Reference to a field of type 'String'
+   * Reference to a field of type 'Int'
    */
-  export type StringFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'String'>
+  export type IntFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'Int'>
     
 
 
   /**
-   * Reference to a field of type 'Int'
+   * Reference to a field of type 'String'
    */
-  export type IntFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'Int'>
+  export type StringFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'String'>
     
 
 
@@ -4284,39 +4332,46 @@ export namespace Prisma {
     AND?: UsuarioWhereInput | UsuarioWhereInput[]
     OR?: UsuarioWhereInput[]
     NOT?: UsuarioWhereInput | UsuarioWhereInput[]
+    id?: IntFilter<"Usuario"> | number
     email?: StringFilter<"Usuario"> | string
     senha?: StringFilter<"Usuario"> | string
     nome?: StringFilter<"Usuario"> | string
   }
 
   export type UsuarioOrderByWithRelationInput = {
+    id?: SortOrder
     email?: SortOrder
     senha?: SortOrder
     nome?: SortOrder
   }
 
   export type UsuarioWhereUniqueInput = Prisma.AtLeast<{
+    id?: number
     email?: string
     AND?: UsuarioWhereInput | UsuarioWhereInput[]
     OR?: UsuarioWhereInput[]
     NOT?: UsuarioWhereInput | UsuarioWhereInput[]
     senha?: StringFilter<"Usuario"> | string
     nome?: StringFilter<"Usuario"> | string
-  }, "email">
+  }, "id" | "email">
 
   export type UsuarioOrderByWithAggregationInput = {
+    id?: SortOrder
     email?: SortOrder
     senha?: SortOrder
     nome?: SortOrder
     _count?: UsuarioCountOrderByAggregateInput
+    _avg?: UsuarioAvgOrderByAggregateInput
     _max?: UsuarioMaxOrderByAggregateInput
     _min?: UsuarioMinOrderByAggregateInput
+    _sum?: UsuarioSumOrderByAggregateInput
   }
 
   export type UsuarioScalarWhereWithAggregatesInput = {
     AND?: UsuarioScalarWhereWithAggregatesInput | UsuarioScalarWhereWithAggregatesInput[]
     OR?: UsuarioScalarWhereWithAggregatesInput[]
     NOT?: UsuarioScalarWhereWithAggregatesInput | UsuarioScalarWhereWithAggregatesInput[]
+    id?: IntWithAggregatesFilter<"Usuario"> | number
     email?: StringWithAggregatesFilter<"Usuario"> | string
     senha?: StringWithAggregatesFilter<"Usuario"> | string
     nome?: StringWithAggregatesFilter<"Usuario"> | string
@@ -4418,6 +4473,7 @@ export namespace Prisma {
   }
 
   export type UsuarioUncheckedCreateInput = {
+    id?: number
     email: string
     senha: string
     nome: string
@@ -4430,12 +4486,14 @@ export namespace Prisma {
   }
 
   export type UsuarioUncheckedUpdateInput = {
+    id?: IntFieldUpdateOperationsInput | number
     email?: StringFieldUpdateOperationsInput | string
     senha?: StringFieldUpdateOperationsInput | string
     nome?: StringFieldUpdateOperationsInput | string
   }
 
   export type UsuarioCreateManyInput = {
+    id?: number
     email: string
     senha: string
     nome: string
@@ -4448,6 +4506,7 @@ export namespace Prisma {
   }
 
   export type UsuarioUncheckedUpdateManyInput = {
+    id?: IntFieldUpdateOperationsInput | number
     email?: StringFieldUpdateOperationsInput | string
     senha?: StringFieldUpdateOperationsInput | string
     nome?: StringFieldUpdateOperationsInput | string
@@ -4527,6 +4586,17 @@ export namespace Prisma {
     projetoId?: NullableIntFieldUpdateOperationsInput | number | null
   }
 
+  export type IntFilter<$PrismaModel = never> = {
+    equals?: number | IntFieldRefInput<$PrismaModel>
+    in?: number[]
+    notIn?: number[]
+    lt?: number | IntFieldRefInput<$PrismaModel>
+    lte?: number | IntFieldRefInput<$PrismaModel>
+    gt?: number | IntFieldRefInput<$PrismaModel>
+    gte?: number | IntFieldRefInput<$PrismaModel>
+    not?: NestedIntFilter<$PrismaModel> | number
+  }
+
   export type StringFilter<$PrismaModel = never> = {
     equals?: string | StringFieldRefInput<$PrismaModel>
     in?: string[]
@@ -4542,21 +4612,48 @@ export namespace Prisma {
   }
 
   export type UsuarioCountOrderByAggregateInput = {
+    id?: SortOrder
     email?: SortOrder
     senha?: SortOrder
     nome?: SortOrder
   }
 
+  export type UsuarioAvgOrderByAggregateInput = {
+    id?: SortOrder
+  }
+
   export type UsuarioMaxOrderByAggregateInput = {
+    id?: SortOrder
     email?: SortOrder
     senha?: SortOrder
     nome?: SortOrder
   }
 
   export type UsuarioMinOrderByAggregateInput = {
+    id?: SortOrder
     email?: SortOrder
     senha?: SortOrder
     nome?: SortOrder
+  }
+
+  export type UsuarioSumOrderByAggregateInput = {
+    id?: SortOrder
+  }
+
+  export type IntWithAggregatesFilter<$PrismaModel = never> = {
+    equals?: number | IntFieldRefInput<$PrismaModel>
+    in?: number[]
+    notIn?: number[]
+    lt?: number | IntFieldRefInput<$PrismaModel>
+    lte?: number | IntFieldRefInput<$PrismaModel>
+    gt?: number | IntFieldRefInput<$PrismaModel>
+    gte?: number | IntFieldRefInput<$PrismaModel>
+    not?: NestedIntWithAggregatesFilter<$PrismaModel> | number
+    _count?: NestedIntFilter<$PrismaModel>
+    _avg?: NestedFloatFilter<$PrismaModel>
+    _sum?: NestedIntFilter<$PrismaModel>
+    _min?: NestedIntFilter<$PrismaModel>
+    _max?: NestedIntFilter<$PrismaModel>
   }
 
   export type StringWithAggregatesFilter<$PrismaModel = never> = {
@@ -4574,17 +4671,6 @@ export namespace Prisma {
     _count?: NestedIntFilter<$PrismaModel>
     _min?: NestedStringFilter<$PrismaModel>
     _max?: NestedStringFilter<$PrismaModel>
-  }
-
-  export type IntFilter<$PrismaModel = never> = {
-    equals?: number | IntFieldRefInput<$PrismaModel>
-    in?: number[]
-    notIn?: number[]
-    lt?: number | IntFieldRefInput<$PrismaModel>
-    lte?: number | IntFieldRefInput<$PrismaModel>
-    gt?: number | IntFieldRefInput<$PrismaModel>
-    gte?: number | IntFieldRefInput<$PrismaModel>
-    not?: NestedIntFilter<$PrismaModel> | number
   }
 
   export type TarefaListRelationFilter = {
@@ -4618,22 +4704,6 @@ export namespace Prisma {
 
   export type ProjetoSumOrderByAggregateInput = {
     id?: SortOrder
-  }
-
-  export type IntWithAggregatesFilter<$PrismaModel = never> = {
-    equals?: number | IntFieldRefInput<$PrismaModel>
-    in?: number[]
-    notIn?: number[]
-    lt?: number | IntFieldRefInput<$PrismaModel>
-    lte?: number | IntFieldRefInput<$PrismaModel>
-    gt?: number | IntFieldRefInput<$PrismaModel>
-    gte?: number | IntFieldRefInput<$PrismaModel>
-    not?: NestedIntWithAggregatesFilter<$PrismaModel> | number
-    _count?: NestedIntFilter<$PrismaModel>
-    _avg?: NestedFloatFilter<$PrismaModel>
-    _sum?: NestedIntFilter<$PrismaModel>
-    _min?: NestedIntFilter<$PrismaModel>
-    _max?: NestedIntFilter<$PrismaModel>
   }
 
   export type IntNullableFilter<$PrismaModel = never> = {
@@ -4705,6 +4775,14 @@ export namespace Prisma {
     set?: string
   }
 
+  export type IntFieldUpdateOperationsInput = {
+    set?: number
+    increment?: number
+    decrement?: number
+    multiply?: number
+    divide?: number
+  }
+
   export type TarefaCreateNestedManyWithoutNomeProjetoInput = {
     create?: XOR<TarefaCreateWithoutNomeProjetoInput, TarefaUncheckedCreateWithoutNomeProjetoInput> | TarefaCreateWithoutNomeProjetoInput[] | TarefaUncheckedCreateWithoutNomeProjetoInput[]
     connectOrCreate?: TarefaCreateOrConnectWithoutNomeProjetoInput | TarefaCreateOrConnectWithoutNomeProjetoInput[]
@@ -4731,14 +4809,6 @@ export namespace Prisma {
     update?: TarefaUpdateWithWhereUniqueWithoutNomeProjetoInput | TarefaUpdateWithWhereUniqueWithoutNomeProjetoInput[]
     updateMany?: TarefaUpdateManyWithWhereWithoutNomeProjetoInput | TarefaUpdateManyWithWhereWithoutNomeProjetoInput[]
     deleteMany?: TarefaScalarWhereInput | TarefaScalarWhereInput[]
-  }
-
-  export type IntFieldUpdateOperationsInput = {
-    set?: number
-    increment?: number
-    decrement?: number
-    multiply?: number
-    divide?: number
   }
 
   export type TarefaUncheckedUpdateManyWithoutNomeProjetoNestedInput = {
@@ -4779,6 +4849,17 @@ export namespace Prisma {
     divide?: number
   }
 
+  export type NestedIntFilter<$PrismaModel = never> = {
+    equals?: number | IntFieldRefInput<$PrismaModel>
+    in?: number[]
+    notIn?: number[]
+    lt?: number | IntFieldRefInput<$PrismaModel>
+    lte?: number | IntFieldRefInput<$PrismaModel>
+    gt?: number | IntFieldRefInput<$PrismaModel>
+    gte?: number | IntFieldRefInput<$PrismaModel>
+    not?: NestedIntFilter<$PrismaModel> | number
+  }
+
   export type NestedStringFilter<$PrismaModel = never> = {
     equals?: string | StringFieldRefInput<$PrismaModel>
     in?: string[]
@@ -4791,34 +4872,6 @@ export namespace Prisma {
     startsWith?: string | StringFieldRefInput<$PrismaModel>
     endsWith?: string | StringFieldRefInput<$PrismaModel>
     not?: NestedStringFilter<$PrismaModel> | string
-  }
-
-  export type NestedStringWithAggregatesFilter<$PrismaModel = never> = {
-    equals?: string | StringFieldRefInput<$PrismaModel>
-    in?: string[]
-    notIn?: string[]
-    lt?: string | StringFieldRefInput<$PrismaModel>
-    lte?: string | StringFieldRefInput<$PrismaModel>
-    gt?: string | StringFieldRefInput<$PrismaModel>
-    gte?: string | StringFieldRefInput<$PrismaModel>
-    contains?: string | StringFieldRefInput<$PrismaModel>
-    startsWith?: string | StringFieldRefInput<$PrismaModel>
-    endsWith?: string | StringFieldRefInput<$PrismaModel>
-    not?: NestedStringWithAggregatesFilter<$PrismaModel> | string
-    _count?: NestedIntFilter<$PrismaModel>
-    _min?: NestedStringFilter<$PrismaModel>
-    _max?: NestedStringFilter<$PrismaModel>
-  }
-
-  export type NestedIntFilter<$PrismaModel = never> = {
-    equals?: number | IntFieldRefInput<$PrismaModel>
-    in?: number[]
-    notIn?: number[]
-    lt?: number | IntFieldRefInput<$PrismaModel>
-    lte?: number | IntFieldRefInput<$PrismaModel>
-    gt?: number | IntFieldRefInput<$PrismaModel>
-    gte?: number | IntFieldRefInput<$PrismaModel>
-    not?: NestedIntFilter<$PrismaModel> | number
   }
 
   export type NestedIntWithAggregatesFilter<$PrismaModel = never> = {
@@ -4846,6 +4899,23 @@ export namespace Prisma {
     gt?: number | FloatFieldRefInput<$PrismaModel>
     gte?: number | FloatFieldRefInput<$PrismaModel>
     not?: NestedFloatFilter<$PrismaModel> | number
+  }
+
+  export type NestedStringWithAggregatesFilter<$PrismaModel = never> = {
+    equals?: string | StringFieldRefInput<$PrismaModel>
+    in?: string[]
+    notIn?: string[]
+    lt?: string | StringFieldRefInput<$PrismaModel>
+    lte?: string | StringFieldRefInput<$PrismaModel>
+    gt?: string | StringFieldRefInput<$PrismaModel>
+    gte?: string | StringFieldRefInput<$PrismaModel>
+    contains?: string | StringFieldRefInput<$PrismaModel>
+    startsWith?: string | StringFieldRefInput<$PrismaModel>
+    endsWith?: string | StringFieldRefInput<$PrismaModel>
+    not?: NestedStringWithAggregatesFilter<$PrismaModel> | string
+    _count?: NestedIntFilter<$PrismaModel>
+    _min?: NestedStringFilter<$PrismaModel>
+    _max?: NestedStringFilter<$PrismaModel>
   }
 
   export type NestedIntNullableFilter<$PrismaModel = never> = {
