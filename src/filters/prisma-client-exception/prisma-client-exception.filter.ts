@@ -9,30 +9,14 @@ export class PrismaClientExceptionFilter extends BaseExceptionFilter {
     console.error(exception.message);
     const ctx = host.switchToHttp();
     const response = ctx.getResponse<Response>();
-    const message = exception.message.replace(/\n/g, '');
+    console.log(exception.code);
 
     switch (exception.code) {
-      case 'P2001': {
-        const status = HttpStatus.NOT_FOUND;
-        response.status(status).json({
-          statusCode: status,
-          message: message,
-        });
-        break;
-      }
       case 'P2002': {
         const status = HttpStatus.CONFLICT;
         response.status(status).json({
           statusCode: status,
-          message: message,
-        });
-        break;
-      }
-      case 'P2012': {
-        const status = HttpStatus.BAD_REQUEST;
-        response.status(status).json({
-          statusCode: status,
-          message: message,
+          message: 'Dados já existentes',
         });
         break;
       }
@@ -40,7 +24,7 @@ export class PrismaClientExceptionFilter extends BaseExceptionFilter {
         const status = HttpStatus.BAD_REQUEST;
         response.status(status).json({
           statusCode: status,
-          message: message,
+          message: 'ID não encontrado',
         });
         break;
       }

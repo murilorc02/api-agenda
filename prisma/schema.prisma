@@ -9,21 +9,24 @@ datasource db {
 }
 
 model Usuario {
-  id    Int    @id @default(autoincrement())
-  email String @unique
-  senha String
-  nome  String
+  id       Int       @id @default(autoincrement())
+  email    String    @unique
+  senha    String
+  nome     String
+  projetos Projeto[]
 }
 
 model Projeto {
-  id     Int      @id @default(autoincrement())
-  nome   String
-  Tarefa Tarefa[]
+  id         Int      @id @default(autoincrement())
+  nome       String
+  tarefas    Tarefa[]
+  usuarioRel Usuario  @relation(fields: [usuarioId], references: [id])
+  usuarioId  Int
 }
 
 model Tarefa {
-  id          Int      @id @default(autoincrement())
+  id          Int     @id @default(autoincrement())
   nome        String
-  nomeProjeto Projeto? @relation(fields: [projetoId], references: [id])
-  projetoId   Int?
+  nomeProjeto Projeto @relation(fields: [projetoId], references: [id])
+  projetoId   Int
 }

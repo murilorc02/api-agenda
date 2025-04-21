@@ -123,7 +123,8 @@ exports.Prisma.UsuarioScalarFieldEnum = {
 
 exports.Prisma.ProjetoScalarFieldEnum = {
   id: 'id',
-  nome: 'nome'
+  nome: 'nome',
+  usuarioId: 'usuarioId'
 };
 
 exports.Prisma.TarefaScalarFieldEnum = {
@@ -135,11 +136,6 @@ exports.Prisma.TarefaScalarFieldEnum = {
 exports.Prisma.SortOrder = {
   asc: 'asc',
   desc: 'desc'
-};
-
-exports.Prisma.NullsOrder = {
-  first: 'first',
-  last: 'last'
 };
 
 
